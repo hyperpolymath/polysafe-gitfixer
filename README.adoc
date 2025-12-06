@@ -1,0 +1,209 @@
+// SPDX-License-Identifier: MIT AND Palimpsest-0.8
+// SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+
+= polysafe-gitfixer
+:toc:
+:toc-placement!:
+:sectnums:
+:icons: font
+:source-highlighter: rouge
+
+image:https://img.shields.io/badge/RSR-compliant-gold[RSR Compliant]
+image:https://img.shields.io/badge/license-MIT%20%2B%20Palimpsest--0.8-blue[License]
+
+A polyglot implementation of a git backup merger tool, where each component is
+written in the language that provides the strongest safety guarantees for that
+component's concerns.
+
+toc::[]
+
+== Overview
+
+polysafe-gitfixer helps you manage git repository backups by:
+
+1. Scanning a directory tree for git repositories
+2. Finding backup directories (`*-backup`, `*.backup-*`)
+3. Matching backups to their corresponding repos
+4. Diffing backup vs repo contents
+5. Offering interactive merge/replace/delete options
+6. Maintaining an append-only audit log
+7. Handling failures gracefully via OTP supervision
+
+== Architecture
+
+[source]
+----
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              COMPONENT MAP                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   ┌─────────────────┐         ┌─────────────────┐                          │
+│   │     Haskell     │         │     Nickel      │                          │
+│   │    TUI/CLI      │◄────────│     Config      │                          │
+│   │     (Brick)     │         │    (schemas)    │                          │
+│   └────────┬────────┘         └─────────────────┘                          │
+│            │                                                                │
+│            ▼                                                                │
+│   ┌─────────────────────────────────────────────────────────────┐          │
+│   │                    Elixir/OTP                                │          │
+│   │              Orchestration & Supervision                     │          │
+│   └───┬─────────────────┬─────────────────┬─────────────────┬───┘          │
+│       │                 │                 │                 │              │
+│       ▼                 ▼                 ▼                 ▼              │
+│  ┌─────────┐      ┌──────────┐     ┌──────────┐      ┌──────────┐         │
+│  │  Idris  │      │ Haskell  │     │   Rust   │      │   Rust   │         │
+│  │Workflow │      │   Diff   │     │   Git    │      │   F/S    │         │
+│  │  State  │      │  Engine  │     │   Ops    │      │   Ops    │         │
+│  └─────────┘      └──────────┘     └──────────┘      └──────────┘         │
+│                                                                            │
+│                    ┌──────────────────────────────┐                        │
+│                    │           Rust               │                        │
+│                    │   Capability & Audit Layer   │                        │
+│                    └──────────────────────────────┘                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+----
+
+== Components
+
+[cols="2,1,3"]
+|===
+|Component |Language |Safety Guarantee
+
+|Configuration
+|Nickel
+|Schema validation, typed defaults
+
+|Capability & Audit
+|Rust
+|Path traversal prevention, tamper-evident logging
+
+|Filesystem Ops
+|Rust
+|RAII, atomic transactions, rollback on failure
+
+|Git Operations
+|Rust
+|Error handling, effect tracking
+
+|Diff Engine
+|Haskell
+|Totality, streaming for large files
+
+|Workflow State
+|Idris 2
+|Typestate (can't call operations in wrong order)
+
+|Orchestration
+|Elixir/OTP
+|Fault isolation, supervision trees
+
+|TUI/CLI
+|Haskell (Brick)
+|Elm Architecture, exhaustive event handling
+|===
+
+== Quick Start
+
+=== Prerequisites
+
+* **Rust** 1.75+ (via rustup)
+* **Haskell** GHC 9.4+, Cabal 3.8+
+* **Elixir** 1.15+, OTP 26+
+* **Nickel** 1.4+ (optional, for config validation)
+* **Idris 2** 0.6+ (optional, Haskell fallback available)
+
+=== Build
+
+[source,bash]
+----
+# Build all components
+make all
+
+# Run tests
+make test
+
+# Build individual components
+make rust      # Rust crates only
+make haskell   # Haskell components only
+make elixir    # Elixir orchestrator only
+----
+
+== Project Structure
+
+[source]
+----
+polysafe-gitfixer/
+├── config/              # Nickel configuration schemas
+├── crates/              # Rust components
+│   ├── capability/      # Path safety & audit logging
+│   ├── fs_ops/          # Transactional filesystem operations
+│   ├── git_ops/         # Git repository operations
+│   └── polysafe_nifs/   # Rustler NIFs for Elixir
+├── haskell/             # Haskell components
+│   ├── diff-engine/     # Tree/file diffing
+│   └── tui/             # Terminal UI
+├── idris/               # Idris 2 workflow state machine
+├── elixir/              # Elixir orchestrator
+├── .well-known/         # RSR protocol files
+└── test/                # Integration tests
+----
+
+== Safety Philosophy
+
+Each component uses the language with the strongest safety guarantees for its
+specific concerns:
+
+**Rust** (capability, fs_ops, git_ops)::
+Memory safety without garbage collection, RAII for deterministic cleanup,
+strong ownership model prevents data races.
+
+**Haskell** (diff-engine, tui)::
+Strong static typing, totality checking, lazy evaluation for streaming
+large files, Elm Architecture for exhaustive event handling.
+
+**Elixir/OTP** (orchestrator)::
+"Let it crash" philosophy with supervision trees, process isolation,
+fault-tolerant by design.
+
+**Idris 2** (workflow)::
+Dependent types enable typestate patterns where invalid states are
+unrepresentable at compile time.
+
+**Nickel** (configuration)::
+Schema validation with contracts, preventing configuration errors
+before runtime.
+
+== Contributing
+
+We welcome contributions! See link:CONTRIBUTING.adoc[CONTRIBUTING] for:
+
+* The Tri-Perimeter Contribution Framework (TPCF)
+* Development setup instructions
+* Code style guidelines
+* How to submit merge requests
+
+== Documentation
+
+* link:SECURITY.md[Security Policy] - Vulnerability reporting
+* link:CODE_OF_CONDUCT.adoc[Code of Conduct] - Community standards
+* link:GOVERNANCE.adoc[Governance] - Decision-making process
+* link:MAINTAINERS.md[Maintainers] - Project leadership
+
+== License
+
+This project is dual-licensed under:
+
+* **MIT License** - Permissive, widely compatible
+* **Palimpsest License v0.8** - Collaborative attribution, AI training restrictions
+
+See link:LICENSE.txt[LICENSE.txt] for full terms.
+
+== Acknowledgments
+
+* https://gitlab.com/Hyperpolymath/rhodium-standard-repositories[Rhodium Standard] - Repository standards
+* https://github.com/rust-lang/git2-rs[git2-rs] - Rust bindings for libgit2
+* https://github.com/briansmith/ring[ring] - Cryptographic primitives
+
+---
+
+_This project follows the https://gitlab.com/Hyperpolymath/rhodium-standard-repositories[Rhodium Standard Repositories] specification._

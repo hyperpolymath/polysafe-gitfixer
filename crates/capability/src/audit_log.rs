@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT AND Palimpsest-0.8
+// SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+
 //! Append-only, hash-chained audit log for tamper evidence
 
 use std::fs::{File, OpenOptions};
