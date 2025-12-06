@@ -1,0 +1,293 @@
+= Governance
+:toc:
+:toc-placement!:
+:sectnums:
+
+toc::[]
+
+== Overview
+
+polysafe-gitfixer is governed by principles of transparency, consensus-seeking,
+and graduated trust. This document describes how decisions are made and how
+contributors can participate in project governance.
+
+== Core Principles
+
+=== Consensus-Seeking
+
+We prefer consensus over voting. Decisions should emerge from discussion
+where possible, with voting reserved for deadlocks.
+
+=== Graduated Trust
+
+The Tri-Perimeter Contribution Framework (TPCF) provides graduated access
+based on demonstrated expertise and commitment.
+
+=== Reversibility
+
+Decisions should be reversible when practical. We prefer experiments over
+permanent commitments.
+
+=== Transparency
+
+All governance discussions happen in public, with decisions documented
+in issues or merge requests.
+
+=== Merit-Based
+
+Advancement is based on contributions and demonstrated judgment, not
+tenure alone.
+
+== Tri-Perimeter Framework
+
+See link:CONTRIBUTING.adoc[CONTRIBUTING] for detailed framework description.
+
+[cols="1,2,3"]
+|===
+|Perimeter |Access Level |Scope
+
+|3 - Community
+|Open to all
+|Documentation, bug reports, features, examples
+
+|2 - Expert
+|Trusted contributors
+|Code review, extensions, mentoring
+
+|1 - Core
+|Maintainers only
+|Security, CI/CD, releases, architecture
+|===
+
+== Decision-Making
+
+=== Decision Categories
+
+==== Routine Decisions
+
+* Typo fixes, documentation improvements
+* Clear bug fixes with tests
+* Approved by any maintainer
+
+==== Minor Decisions
+
+* Feature additions within existing architecture
+* Dependency updates (non-breaking)
+* Requires review from one core maintainer
+
+==== Major Decisions
+
+* New components or languages
+* Breaking changes to public APIs
+* Significant architectural changes
+* Requires discussion period (1 week) and approval from 2+ maintainers
+
+==== Critical Decisions
+
+* Security-critical changes
+* License modifications
+* Governance changes
+* Requires supermajority (2/3) of active maintainers
+
+=== Voting Process
+
+When consensus cannot be reached:
+
+1. Discussion period of at least 72 hours
+2. Clear proposal documented in an issue
+3. Voting period of 1 week
+4. Each active maintainer gets one vote
+5. Results documented publicly
+
+== Project Roles
+
+=== Community Contributor
+
+* Anyone who participates in discussions or reports bugs
+* No special permissions required
+
+=== Regular Contributor
+
+* Has submitted multiple accepted contributions
+* Demonstrates understanding of project goals
+* May be invited to review PRs
+
+=== Trusted Contributor (Perimeter 2)
+
+* Requirements:
+** 3+ months active participation, OR
+** 10+ merged contributions, OR
+** Demonstrated domain expertise
+* Responsibilities:
+** Review and approve merge requests
+** Mentor new contributors
+** Help with issue triage
+
+=== Core Maintainer (Perimeter 1)
+
+* Requirements:
+** Sustained high-quality contributions
+** Demonstrated good judgment
+** Nominated by existing maintainer, approved by consensus
+* Responsibilities:
+** Merge to protected branches
+** Release management
+** Security response
+** Final say on architectural decisions
+* Listed in MAINTAINERS.md
+
+== Security Governance
+
+=== Security Team
+
+Core maintainers form the security response team.
+
+=== Response Process
+
+1. Vulnerability reported via SECURITY.md channels
+2. Acknowledged within SLA timeframe
+3. Assessed and assigned severity
+4. Fix developed in private
+5. Coordinated disclosure
+
+=== Emergency Authority
+
+In critical security situations, any core maintainer may:
+
+* Revert commits
+* Disable features
+* Push emergency patches
+
+Such actions must be documented immediately and reviewed by the team
+within 24 hours.
+
+== Release Management
+
+=== Versioning
+
+We follow Semantic Versioning (SemVer):
+
+* MAJOR: Breaking changes
+* MINOR: New features, backward compatible
+* PATCH: Bug fixes, backward compatible
+
+=== Release Process
+
+1. Feature freeze announced
+2. Release candidate prepared
+3. Testing period (1 week for major, 3 days for minor)
+4. Release notes drafted
+5. Tag created and release published
+6. Announcement posted
+
+=== Release Schedule
+
+* Patch releases: As needed
+* Minor releases: Quarterly
+* Major releases: When necessary, with migration guides
+
+== Conflict Resolution
+
+=== Technical Disagreements
+
+1. Discussion in relevant issue/MR
+2. Seek input from domain experts
+3. If unresolved, escalate to core maintainers
+4. If still unresolved, vote
+
+=== Code of Conduct Violations
+
+See link:CODE_OF_CONDUCT.adoc[CODE OF CONDUCT] for enforcement procedures.
+
+=== Maintainer Disputes
+
+1. Private discussion between involved parties
+2. Mediation by uninvolved maintainer
+3. If unresolved, vote by all other maintainers
+
+== Succession Planning
+
+=== Bus Factor Mitigation
+
+* No single maintainer should have exclusive knowledge
+* Critical systems documented in docs/
+* Multiple maintainers for each component
+
+=== Maintainer Transitions
+
+When a maintainer steps down:
+
+1. Knowledge transfer period (if possible)
+2. Update MAINTAINERS.md
+3. Credential rotation
+4. Public acknowledgment
+
+=== Project Archival
+
+If the project becomes unmaintained:
+
+1. Clear announcement with 90-day notice
+2. Fork recommendations documented
+3. Archive repository (read-only)
+4. Preserve issue history
+
+== Amendment Process
+
+=== Minor Amendments
+
+* Clarifications, typo fixes
+* Single maintainer approval
+
+=== Major Amendments
+
+* Structural changes to governance
+* Process:
+1. Proposal issue created
+2. 2-week discussion period
+3. 2/3 supermajority vote required
+4. 1-week implementation period
+
+== Financial Governance
+
+=== Transparency
+
+If the project receives funding:
+
+* All income and expenses documented
+* Quarterly reports published
+* OpenCollective or similar transparent platform preferred
+
+=== Spending Authority
+
+* Under $100: Any maintainer
+* $100-$500: Two maintainer approval
+* Over $500: Majority maintainer approval
+
+=== Budget Priorities
+
+1. Infrastructure and hosting
+2. Security audits
+3. Contributor compensation
+4. Community events
+5. Upstream support
+
+== Platform Governance
+
+=== Primary Platform
+
+GitLab (gitlab.com/Hyperpolymath/polysafe-gitfixer)
+
+=== Mirrors
+
+GitHub mirror maintained for discoverability.
+
+=== Credentials
+
+* Access credentials documented securely
+* Rotation on maintainer departure
+* 2FA required for all maintainers
+
+== Contact
+
+For governance questions, open an issue or contact maintainers listed
+in MAINTAINERS.md.

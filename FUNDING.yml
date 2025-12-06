@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: MIT AND Palimpsest-0.8
+# SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+#
+# Funding and sponsorship information for polysafe-gitfixer
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
+
+# Primary funding platforms
+# open_collective: polysafe-gitfixer
+# liberapay: polysafe-gitfixer
+
+# Direct sponsorship
+github: [Hyperpolymath]
+# patreon:
+# ko_fi:
+
+# Custom links
+custom:
+  - https://gitlab.com/Hyperpolymath/polysafe-gitfixer
+
+# ==============================================================================
+# Funding Philosophy
+# ==============================================================================
+#
+# polysafe-gitfixer is free and open source software. Core functionality will
+# always remain freely available under the MIT + Palimpsest-0.8 dual license.
+#
+# Funding helps with:
+# - Development time for new features
+# - Security audits
+# - Infrastructure costs
+# - Documentation improvements
+#
+# ==============================================================================
+# Budget Allocation (when funded)
+# ==============================================================================
+#
+# - 40% - Maintainer compensation
+# - 20% - Infrastructure (CI/CD, hosting)
+# - 15% - Security audits
+# - 10% - Community (events, swag)
+# - 10% - Upstream dependencies
+# -  5% - Emergency reserve
+#
+# ==============================================================================
+# Transparency
+# ==============================================================================
+#
+# If/when the project receives funding:
+# - All transactions will be tracked via OpenCollective or similar
+# - Quarterly financial reports will be published
+# - Major expenditures require core team approval
+#
+# See GOVERNANCE.adoc for spending authority levels.

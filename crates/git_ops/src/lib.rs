@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT AND Palimpsest-0.8
+// SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+
 //! # Git Operations for polysafe-gitfixer
 //!
 //! Safe wrappers around git2 operations with proper error handling.

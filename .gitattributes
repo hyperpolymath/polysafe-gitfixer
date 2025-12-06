@@ -1,0 +1,171 @@
+# SPDX-License-Identifier: MIT AND Palimpsest-0.8
+# SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+#
+# Git attributes for polysafe-gitfixer
+# Ensures consistent line endings and diff behavior across platforms
+
+# ==============================================================================
+# Auto-detect text files and normalize line endings
+# ==============================================================================
+* text=auto
+
+# ==============================================================================
+# Source Code - Text files with LF normalization
+# ==============================================================================
+
+# Rust
+*.rs text eol=lf diff=rust
+*.toml text eol=lf
+
+# Haskell
+*.hs text eol=lf diff=haskell
+*.lhs text eol=lf diff=haskell
+*.cabal text eol=lf
+
+# Elixir
+*.ex text eol=lf diff=elixir
+*.exs text eol=lf diff=elixir
+*.eex text eol=lf
+*.heex text eol=lf
+*.leex text eol=lf
+mix.lock text eol=lf
+
+# Idris
+*.idr text eol=lf
+*.ipkg text eol=lf
+
+# Nickel
+*.ncl text eol=lf
+
+# Nix
+*.nix text eol=lf
+flake.lock text eol=lf
+
+# C/C++ (for native dependencies)
+*.c text eol=lf diff=cpp
+*.h text eol=lf diff=cpp
+*.cpp text eol=lf diff=cpp
+*.hpp text eol=lf diff=cpp
+
+# ==============================================================================
+# Documentation - Text files with LF normalization
+# ==============================================================================
+
+*.md text eol=lf diff=markdown
+*.adoc text eol=lf
+*.txt text eol=lf
+*.rst text eol=lf
+*.html text eol=lf diff=html
+*.css text eol=lf diff=css
+*.xml text eol=lf
+
+# ==============================================================================
+# Configuration - Text files with LF normalization
+# ==============================================================================
+
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.conf text eol=lf
+*.cfg text eol=lf
+*.ini text eol=lf
+*.env text eol=lf
+
+# Shell scripts
+*.sh text eol=lf diff=bash
+*.bash text eol=lf diff=bash
+*.zsh text eol=lf
+
+# Build files
+Makefile text eol=lf
+justfile text eol=lf
+Containerfile text eol=lf
+Dockerfile text eol=lf
+
+# Git
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.gitmodules text eol=lf
+
+# ==============================================================================
+# Binary Files - Explicitly mark as binary
+# ==============================================================================
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.svg text eol=lf
+
+# Documents
+*.pdf binary
+
+# Archives
+*.zip binary
+*.tar binary
+*.gz binary
+*.bz2 binary
+*.xz binary
+*.7z binary
+
+# Compiled
+*.wasm binary
+*.so binary
+*.dylib binary
+*.dll binary
+*.exe binary
+*.a binary
+*.o binary
+*.beam binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+
+# ==============================================================================
+# Export Ignore - Files not included in archives
+# ==============================================================================
+
+.git export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+.gitlab-ci.yml export-ignore
+.github export-ignore
+.well-known export-ignore
+
+# Development files
+.editorconfig export-ignore
+.envrc export-ignore
+*.nix export-ignore
+flake.lock export-ignore
+
+# Test fixtures
+test/fixtures export-ignore
+tests/fixtures export-ignore
+
+# Documentation source (keep compiled docs)
+docs/*.adoc export-ignore
+
+# ==============================================================================
+# Linguist Overrides (for GitHub language detection)
+# ==============================================================================
+
+# Ensure Rust is detected as primary language
+*.rs linguist-detectable=true
+*.hs linguist-detectable=true
+*.ex linguist-detectable=true
+*.idr linguist-detectable=true
+
+# Don't count generated files
+Cargo.lock linguist-generated=true
+flake.lock linguist-generated=true
+mix.lock linguist-generated=true
+
+# Vendor directories (if any)
+vendor/* linguist-vendored=true

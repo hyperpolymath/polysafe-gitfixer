@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: MIT AND Palimpsest-0.8
+# SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+#
+# HTTP 430 (Consent Required) Policy
+# See: https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-targeted-cache-control
+#
+# This file documents consent requirements for automated access to this repository.
+
+# ==============================================================================
+# CONSENT FRAMEWORK
+# ==============================================================================
+
+# Automated Access Categories:
+#
+# 1. PERMITTED WITHOUT CONSENT
+#    - Reading public documentation
+#    - Cloning repository
+#    - Running tests locally
+#    - Contributing via merge requests
+#
+# 2. REQUIRES IMPLICIT CONSENT (follow published policies)
+#    - Mirroring repository (respect .well-known/ai.txt)
+#    - Indexing for search engines (respect robots.txt)
+#    - Archival by non-profit organizations
+#
+# 3. REQUIRES EXPLICIT CONSENT (contact maintainers)
+#    - Commercial AI training
+#    - Embedding in proprietary products
+#    - Bulk data collection beyond normal use
+
+# ==============================================================================
+# DATA COLLECTION NOTICE
+# ==============================================================================
+
+# This repository may collect:
+# - Git commit metadata (author, timestamp, message)
+# - Issue and merge request content
+# - CI/CD logs (temporary)
+#
+# This repository does NOT collect:
+# - Personal data beyond Git commit information
+# - Tracking cookies or analytics
+# - Usage telemetry
+
+# ==============================================================================
+# CONSENT CONTACT
+# ==============================================================================
+
+# For consent requests:
+# - Open an issue: https://gitlab.com/Hyperpolymath/polysafe-gitfixer/-/issues
+# - Use subject: "Consent Request: [purpose]"
+#
+# Response time: Within 1 week for non-urgent requests
+
+# ==============================================================================
+# REVOCATION
+# ==============================================================================
+
+# Previously granted consent may be revoked if:
+# - Terms of consent are violated
+# - The recipient becomes a "bad actor" as defined in LICENSE.txt
+# - Material changes to repository licensing occur
+#
+# Revocation does not affect existing legitimate uses.

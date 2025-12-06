@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT AND Palimpsest-0.8
+// SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+
 //! # Rustler NIF Bindings for polysafe-gitfixer
 //!
 //! This crate provides Elixir NIF bindings for the Rust components:

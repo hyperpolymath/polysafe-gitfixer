@@ -1,0 +1,289 @@
+= Contributing to polysafe-gitfixer
+:toc:
+:toc-placement!:
+:sectnums:
+
+toc::[]
+
+Thank you for considering contributing to polysafe-gitfixer! This document
+explains how to participate in the project at any level.
+
+== Quick Start
+
+[source,bash]
+----
+# Fork the repository on GitLab/GitHub
+git clone https://gitlab.com/YOUR_USERNAME/polysafe-gitfixer.git
+cd polysafe-gitfixer
+
+# Create a feature branch
+git checkout -b feature/your-feature-name
+
+# Make changes, then run tests
+make test
+
+# Commit with SPDX headers and clear message
+git commit -m "feat: add your feature description"
+
+# Push and create merge request
+git push origin feature/your-feature-name
+----
+
+== Before You Begin
+
+Please read:
+
+* link:README.adoc[README] - Project overview and architecture
+* link:CODE_OF_CONDUCT.adoc[Code of Conduct] - Community standards
+* link:LICENSE.txt[LICENSE] - Dual MIT + Palimpsest licensing
+* link:SECURITY.md[Security Policy] - For security-related contributions
+
+== Tri-Perimeter Contribution Framework (TPCF)
+
+polysafe-gitfixer uses graduated access levels to balance openness with
+quality control.
+
+=== Perimeter 3: Community Sandbox (Open to All)
+
+**Who**: Everyone
+
+**Contributions**:
+
+* Documentation improvements
+* Bug reports with reproduction steps
+* Feature requests and discussions
+* Example code and tutorials
+* Translations
+* Testing and feedback
+
+**Process**:
+
+1. Fork the repository
+2. Make changes on a feature branch
+3. Run `make check` to validate locally
+4. Submit a merge request
+5. Respond to review feedback
+
+=== Perimeter 2: Expert Extensions (Trusted Contributors)
+
+**Who**: Contributors with demonstrated expertise
+
+**Requirements**:
+
+* 3+ months of active participation, OR
+* 10+ merged contributions, OR
+* Demonstrated domain expertise (Rust, Haskell, Elixir, security)
+
+**Additional Contributions**:
+
+* Review and approve merge requests
+* Extend test infrastructure
+* Create templates and tooling
+* Mentor new contributors
+
+**How to Apply**: Self-nominate or be nominated via an issue
+
+=== Perimeter 1: Core Systems (Maintainers Only)
+
+**Who**: Core maintainers listed in MAINTAINERS.md
+
+**Scope**:
+
+* Security-critical code (capability system, audit log)
+* CI/CD configuration
+* Release management
+* Architectural decisions
+
+**Note**: Core systems are restricted to ensure safety and consistency,
+but proposals and discussions are always welcome.
+
+== Types of Contributions
+
+=== Documentation
+
+* Fix typos, clarify explanations
+* Add examples and tutorials
+* Improve API documentation
+* Translate to other languages
+
+=== Bug Reports
+
+Please include:
+
+* polysafe-gitfixer version
+* Operating system and version
+* Steps to reproduce
+* Expected vs actual behavior
+* Error messages and logs
+
+=== Feature Requests
+
+* Check existing issues first
+* Describe the use case
+* Explain why existing features don't suffice
+* Consider security implications
+
+=== Code Contributions
+
+==== Rust (crates/)
+
+* Follow Rust API guidelines
+* Run `cargo fmt` and `cargo clippy`
+* Add tests for new functionality
+* Update documentation
+
+==== Haskell (haskell/)
+
+* Use `cabal format` or `ormolu`
+* Prefer total functions
+* Add Haddock documentation
+* Include QuickCheck properties where appropriate
+
+==== Elixir (elixir/)
+
+* Follow Elixir style guide
+* Run `mix format`
+* Add ExUnit tests
+* Document with `@doc` and `@moduledoc`
+
+==== All Languages
+
+* Add SPDX headers to new files
+* Keep changes focused and atomic
+* Write clear commit messages
+* Update relevant documentation
+
+== Contribution Workflow
+
+=== 1. Find or Create an Issue
+
+* Check existing issues for duplicates
+* For bugs: create a detailed report
+* For features: discuss before implementing
+* Wait for maintainer feedback on larger changes
+
+=== 2. Fork and Branch
+
+[source,bash]
+----
+git checkout -b type/description
+# Examples:
+# feat/add-backup-detection
+# fix/path-traversal-edge-case
+# docs/improve-installation-guide
+----
+
+=== 3. Develop
+
+* Write tests first when practical
+* Keep commits small and focused
+* Run the full test suite: `make test`
+* Ensure `make check` passes
+
+=== 4. Commit Messages
+
+Follow conventional commits:
+
+[source]
+----
+type(scope): description
+
+[optional body]
+
+[optional footer]
+----
+
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+
+=== 5. Submit Merge Request
+
+* Fill out the MR template completely
+* Link related issues
+* Describe testing performed
+* Request review from appropriate maintainers
+
+=== 6. Code Review
+
+* Respond to feedback promptly
+* Push fixes as new commits (don't force-push during review)
+* Squash commits when requested before merge
+
+== SPDX Headers
+
+All source files must include SPDX license headers:
+
+.Rust
+[source,rust]
+----
+// SPDX-License-Identifier: MIT AND Palimpsest-0.8
+// SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+----
+
+.Haskell
+[source,haskell]
+----
+-- SPDX-License-Identifier: MIT AND Palimpsest-0.8
+-- SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+----
+
+.Elixir
+[source,elixir]
+----
+# SPDX-License-Identifier: MIT AND Palimpsest-0.8
+# SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+----
+
+== Development Environment
+
+=== Required Tools
+
+* **Rust**: 1.75+ (via rustup)
+* **Haskell**: GHC 9.4+, Cabal 3.8+
+* **Elixir**: 1.15+, OTP 26+
+* **Optional**: Nickel 1.4+, Idris 2 0.6+
+
+=== Setup
+
+[source,bash]
+----
+# Clone repository
+git clone https://gitlab.com/Hyperpolymath/polysafe-gitfixer.git
+cd polysafe-gitfixer
+
+# Build all components
+make all
+
+# Run tests
+make test
+----
+
+== Getting Help
+
+* **Issues**: For bugs and feature requests
+* **Discussions**: For questions and ideas
+* **Matrix/IRC**: Real-time community chat (if available)
+
+== Recognition
+
+Contributors are recognized in:
+
+* `MAINTAINERS.md` for significant contributions
+* `.well-known/humans.txt` for all contributors
+* Release notes for specific contributions
+
+== Legal
+
+=== Licensing
+
+By contributing, you agree that your contributions will be licensed under
+the project's dual MIT + Palimpsest-0.8 license.
+
+=== Developer Certificate of Origin
+
+By submitting a contribution, you certify that you have the right to submit
+it under the project's license. See https://developercertificate.org/
+
+== Thank You!
+
+Every contribution makes polysafe-gitfixer better. We appreciate your time
+and effort!
