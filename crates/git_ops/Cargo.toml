@@ -1,0 +1,16 @@
+[package]
+name = "git_ops"
+description = "Safe git operations wrapper for polysafe-gitfixer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+capability = { path = "../capability" }
+git2 = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3.14"

@@ -1,0 +1,13 @@
+target/
+Cargo.lock
+.DS_Store
+*.log
+*.tmp
+_build/
+deps/
+.elixir_ls/
+.erlang.cookie
+*.beam
+*.ez
+erl_crash.dump
+

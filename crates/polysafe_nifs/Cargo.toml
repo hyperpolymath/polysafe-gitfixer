@@ -1,0 +1,16 @@
+[package]
+name = "polysafe_nifs"
+description = "Rustler NIF bindings for Elixir integration"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+capability = { path = "../capability" }
+fs_ops = { path = "../fs_ops" }
+git_ops = { path = "../git_ops" }
+rustler = { workspace = true }
