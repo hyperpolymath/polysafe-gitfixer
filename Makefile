@@ -1,4 +1,7 @@
-.PHONY: all rust haskell idris elixir clean test check fmt
+# SPDX-License-Identifier: MIT AND Palimpsest-0.8
+# SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+
+.PHONY: all rust haskell idris elixir clean test check fmt shell
 
 # Default target: build everything
 all: rust haskell idris elixir
@@ -86,6 +89,10 @@ clean:
 watch-rust:
 	cd crates && cargo watch -x check
 
+# Nix development shell
+shell:
+	nix develop
+
 # Help
 help:
 	@echo "polysafe-gitfixer build system"
@@ -101,4 +108,5 @@ help:
 	@echo "  check        - Type check without building"
 	@echo "  fmt          - Format all code"
 	@echo "  clean        - Remove build artifacts"
+	@echo "  shell        - Enter Nix development shell"
 	@echo "  help         - Show this help"
