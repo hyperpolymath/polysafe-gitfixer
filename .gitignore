@@ -5,7 +5,7 @@
 # Rust
 # ==============================================================================
 target/
-# Note: Cargo.lock IS tracked for reproducible Nix builds
+Cargo.lock
 **/*.rs.bk
 *.pdb
 
@@ -67,11 +67,6 @@ build/
 result
 result-*
 .direnv/
-
-# Local Nix shell directories (created by shellHook)
-.nix-mix/
-.nix-hex/
-.cabal/
 
 # ==============================================================================
 # Editor/IDE
