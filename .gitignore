@@ -1,120 +1,79 @@
-# SPDX-License-Identifier: MIT AND Palimpsest-0.8
-# SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# RSR-compliant .gitignore
 
-# ==============================================================================
-# Rust
-# ==============================================================================
-target/
-Cargo.lock
-**/*.rs.bk
-*.pdb
-
-# ==============================================================================
-# Haskell
-# ==============================================================================
-dist/
-dist-newstyle/
-cabal-dev/
-*.o
-*.hi
-*.hie
-*.chi
-*.chs.h
-*.dyn_o
-*.dyn_hi
-.hpc/
-.hsenv/
-.cabal-sandbox/
-cabal.sandbox.config
-*.prof
-*.aux
-*.hp
-*.eventlog
-.stack-work/
-cabal.project.local
-cabal.project.local~
-.HTF/
-.ghc.environment.*
-
-# ==============================================================================
-# Elixir
-# ==============================================================================
-_build/
-deps/
-*.ez
-*.beam
-erl_crash.dump
-.elixir_ls/
-.erlang.cookie
-mix.lock
-
-# ==============================================================================
-# Idris
-# ==============================================================================
-build/
-*.ibc
-*.o
-*.so
-
-# ==============================================================================
-# Nickel
-# ==============================================================================
-*.ncl.json
-
-# ==============================================================================
-# Nix
-# ==============================================================================
-result
-result-*
-.direnv/
-
-# ==============================================================================
-# Editor/IDE
-# ==============================================================================
-.idea/
-.vscode/
+# OS & Editor
+.DS_Store
+Thumbs.db
 *.swp
 *.swo
 *~
-.project
-.classpath
-.settings/
-*.sublime-workspace
-*.sublime-project
+.idea/
+.vscode/
 
-# ==============================================================================
-# OS
-# ==============================================================================
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Build
+/target/
+/_build/
+/build/
+/dist/
+/out/
 
-# ==============================================================================
-# Logs and temp files
-# ==============================================================================
-*.log
-*.tmp
-*.temp
-*.bak
-*.backup
+# Dependencies
+/node_modules/
+/vendor/
+/deps/
+/.elixir_ls/
 
-# ==============================================================================
-# Environment
-# ==============================================================================
+# Rust
+# Cargo.lock  # Keep for binaries
+
+# Elixir
+/cover/
+/doc/
+*.ez
+erl_crash.dump
+
+# Julia
+*.jl.cov
+*.jl.mem
+/Manifest.toml
+
+# ReScript
+/lib/bs/
+/.bsb.lock
+
+# Python (SaltStack only)
+__pycache__/
+*.py[cod]
+.venv/
+
+# Ada/SPARK
+*.ali
+/obj/
+/bin/
+
+# Haskell
+/.stack-work/
+/dist-newstyle/
+
+# Chapel
+*.chpl.tmp.*
+
+# Secrets
 .env
-.env.local
-.env.*.local
-*.local
+.env.*
+*.pem
+*.key
+secrets/
 
-# ==============================================================================
-# Test artifacts
-# ==============================================================================
-coverage/
-.coverage
+# Test/Coverage
+/coverage/
 htmlcov/
-.hypothesis/
-.pytest_cache/
+
+# Logs
+*.log
+/logs/
+
+# Temp
+/tmp/
+*.tmp
+*.bak
