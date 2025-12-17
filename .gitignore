@@ -24,6 +24,7 @@ Thumbs.db
 /.elixir_ls/
 
 # Rust
+**/target/
 # Cargo.lock  # Keep for binaries
 
 # Elixir
