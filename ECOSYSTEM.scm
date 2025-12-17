@@ -6,7 +6,7 @@
   (version "1.0.0")
   (name "polysafe-gitfixer")
   (type "project")
-  (purpose "// SPDX-License-Identifier: MIT AND Palimpsest-0.8")
+  (purpose "Polyglot git backup merger with maximum safety guarantees - scans directory trees for git repos, finds backup directories, offers interactive merge/replace/delete operations with capability-based security and append-only audit logging.")
 
   (position-in-ecosystem
     "Part of hyperpolymath ecosystem. Follows RSR guidelines.")
@@ -16,5 +16,10 @@
              (url "https://github.com/hyperpolymath/rhodium-standard-repositories")
              (relationship "standard")))
 
-  (what-this-is "// SPDX-License-Identifier: MIT AND Palimpsest-0.8")
-  (what-this-is-not "- NOT exempt from RSR compliance"))
+  (what-this-is
+    "A safety-first tool for reconciling git repositories with their backups, using Rust for core operations, Haskell for diffing, Elixir for orchestration, and Idris for verified workflows.")
+
+  (what-this-is-not
+    "- NOT exempt from RSR compliance
+     - NOT a general-purpose backup tool
+     - NOT a replacement for git itself"))
