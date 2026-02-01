@@ -215,7 +215,7 @@ All source files must include SPDX license headers:
 .Rust
 [source,rust]
 ----
-// SPDX-License-Identifier: MIT AND Palimpsest-0.8
+// SPDX-License-Identifier: PMPL-1.0-or-later
 // SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
 ----
 
@@ -229,7 +229,7 @@ All source files must include SPDX license headers:
 .Elixir
 [source,elixir]
 ----
-# SPDX-License-Identifier: MIT AND Palimpsest-0.8
+# SPDX-License-Identifier: PMPL-1.0-or-later
 # SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
 ----
 
