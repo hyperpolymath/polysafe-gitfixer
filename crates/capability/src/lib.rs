@@ -1,22 +1,18 @@
 // SPDX-License-Identifier: MIT AND Palimpsest-0.8
-// SPDX-FileCopyrightText: 2024-2025 The polysafe-gitfixer Contributors
 
-//! # Capability-based Security for polysafe-gitfixer
+//! Capability-Based Security — Polysafe Primitives.
 //!
-//! This crate provides two core security primitives:
+//! This crate implements the core security model for the gitfixer ecosystem. 
+//! It replaces traditional ACL-based checks with "Unforgeable Tokens" that 
+//! grant explicit permission to perform specific actions.
 //!
-//! 1. **DirCapability**: An unforgeable capability token that restricts filesystem
-//!    access to a specific directory tree, preventing path traversal attacks.
-//!
-//! 2. **AuditLog**: An append-only, hash-chained audit log that provides tamper
-//!    evidence and integrity verification.
-//!
-//! ## Design Philosophy
-//!
-//! Rather than checking permissions at each operation, we create capability tokens
-//! that encode the allowed operations. A `DirCapability` for `/home/user/repos`
-//! can only resolve paths within that tree - attempting `../etc/passwd` will fail
-//! at the capability level, not at the filesystem level.
+//! SECURITY PRIMITIVES:
+//! 1. **DirCapability**: A path-restricted token. Once created, it can 
+//!    only resolve paths within its designated sandbox, providing 
+//!    compile-time and runtime protection against CWE-22 (Path Traversal).
+//! 2. **AuditLog**: A cryptographic ledger. Every entry is chained to 
+//!    the previous hash, ensuring that any tampering with the system 
+//!    history is detectable via formal verification.
 
 mod dir_capability;
 mod audit_log;

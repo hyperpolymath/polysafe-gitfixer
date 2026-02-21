@@ -209,3 +209,8 @@ See link:LICENSE.txt[LICENSE.txt] for full terms.
 ---
 
 _This project follows the https://gitlab.com/Hyperpolymath/rhodium-standard-repositories[Rhodium Standard Repositories] specification._
+
+
+== Architecture
+
+See link:TOPOLOGY.md[TOPOLOGY.md] for a visual architecture map and completion dashboard.
