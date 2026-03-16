@@ -21,6 +21,7 @@
 //! Elixir side is responsible for tracking handle lifetimes via a
 //! GenServer or ETS table.
 
+#![forbid(unsafe_code)]
 use rustler::{Encoder, Env, NifResult, Term};
 
 mod atoms {
