@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Clade declaration — part of the gv-clade-index registry
+# See: https://github.com/hyperpolymath/gv-clade-index
+
+[identity]
+uuid = "e16445ab-6938-5931-aff8-0cd023086843"
+primary-forge = "github"
+primary-owner = "hyperpolymath"
+canonical-name = "polysafe-gitfixer"
+prefixed-name = "rm-polysafe-gitfixer"
+
+[clade]
+primary = "rm"
+secondary = ["sc"]
+assigned = "2026-03-16"
+rationale = ""
+
+[forges]
+github = "hyperpolymath/polysafe-gitfixer"
+gitlab = "hyperpolymath/polysafe-gitfixer"
+bitbucket = "hyperpolymath/polysafe-gitfixer"
+
+[lineage]
+type = "standalone"
+parent = "Safe git fix operations across repos"
+born = "2026-03-16"
