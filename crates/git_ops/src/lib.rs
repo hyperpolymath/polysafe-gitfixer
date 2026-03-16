@@ -12,6 +12,7 @@
 //! 3. **Bitemporal Logic**: Support tracking changes across both the Index 
 //!    and the Working Tree.
 
+#![forbid(unsafe_code)]
 use std::path::Path;
 use git2::{Repository, StatusOptions};
 use serde::{Deserialize, Serialize};

@@ -14,6 +14,7 @@
 //! 3. **Isolation**: All paths are resolved through a `DirCapability`, 
 //!    eliminating path traversal vulnerabilities at the capability layer.
 
+#![forbid(unsafe_code)]
 mod transaction;
 
 pub use transaction::{FsTransaction, FsError, FsOp};

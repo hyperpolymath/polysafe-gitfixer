@@ -16,6 +16,7 @@
 // ... [Rustler attribute macros and NIF declarations]
 
 // NIF DISPATCH: Routes Elixir calls to the underlying Rust crates.
+#![forbid(unsafe_code)]
 /*
 rustler::init!(
     "Elixir.PolysafeGitfixer.Native",

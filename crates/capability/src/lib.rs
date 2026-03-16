@@ -14,6 +14,7 @@
 //!    the previous hash, ensuring that any tampering with the system 
 //!    history is detectable via formal verification.
 
+#![forbid(unsafe_code)]
 mod dir_capability;
 mod audit_log;
 
