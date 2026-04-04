@@ -1,22 +1,116 @@
 // SPDX-License-Identifier: PMPL-1.0-or-later
+// Copyright (c) 2026 Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = polysafe-gitfixer — Show Me The Receipts
 :toc:
 :icons: font
+:author: Jonathan D.A. Jewell
 
-The README makes claims. This file backs them up.
+The README makes claims. This file backs them up, traces the critical paths,
+and tells a reviewer exactly where to look.
+
+== Claim 1: Capability-Based Security With Tamper-Evident Audit Log
+
+[quote, README]
+____
+A polyglot implementation of a git backup merger tool, where each component is
+written in the language that provides the strongest safety guarantees for that
+component's concerns.
+____
+
+*How it works:*
+The Rust `capability` crate (`crates/capability/`) is the security foundation
+for the entire tool. It exposes two primitives, documented in `src/lib.rs`:
+
+`DirCapability` — an unforgeable path-restriction token. Created from a root
+directory, it canonicalises the root at creation time. Every subsequent
+`resolve(relative_path)` call verifies the result is still under the canonical
+root, returning `CapabilityError::PathTraversal` if it escapes. Capabilities can
+also be *attenuated*: a write-capable token can spawn a read-only sub-token for
+a nested directory. The `Permissions` bitmask (`read`, `write`, `delete`) is
+checked before each operation. This makes CWE-22 (path traversal) structurally
+impossible — not just checked.
+
+`AuditLog` — a cryptographic ledger. Each `LogEntry` is chained to the SHA-256
+hash of the previous entry, so any deletion or reordering of entries is
+detectable by re-hashing the chain. Operations are typed via the `Operation` enum.
+
+The crate is `#![forbid(unsafe_code)]`.
+
+*Honest caveat:*
+The hash-chaining in `AuditLog` uses the `ring` crate for SHA-256. Formal
+verification (SPARK) of the chaining invariant is listed in `PROOF-NEEDS.md`
+but has not been written yet. The current guarantees are runtime, not
+proof-level.
+
+== Claim 2: Polyglot Orchestration — Each Component in Its Strongest Language
 
 [quote, README]
 ____
 We welcome contributions! See link:CONTRIBUTING.adoc[CONTRIBUTING] for:
+the Tri-Perimeter Contribution Framework (TPCF), development setup instructions,
+code style guidelines, and how to submit merge requests.
 ____
+
+*How it works:*
+The five-layer architecture assigns each concern to the language with the
+strongest guarantee for that concern:
+
+- **Rust** (`crates/capability/`, `crates/fs_ops/`, `crates/git_ops/`) — memory
+  safety and RAII for filesystem and git operations.
+- **Haskell** (`haskell/diff-engine/`, `haskell/tui/`) — totality checking for
+  the diff engine; Brick Elm Architecture for exhaustive TUI event handling.
+- **Elixir/OTP** (`elixir/`) — OTP supervision trees for fault isolation; if
+  the diff engine crashes, the supervisor restarts only that worker.
+- **Idris 2** (`idris/`) — dependent types enforce typestate: the workflow
+  state machine makes it a compile-time error to call `merge` before `diff`.
+- **Nickel** (`config/`) — schema-validated configuration; type contracts fire
+  at `nickel eval` time, before the binary starts.
+
+Rust NIFs expose the capability and FS operations to Elixir via `crates/polysafe_nifs/`
+(Rustler). End-to-end integration tests live in `crates/polysafe_e2e/`.
+
+*Honest caveat:*
+The Haskell and Idris 2 components are further behind than the Rust crates.
+The TUI (`haskell/tui/`) compiles but is not wired to the Elixir orchestrator
+yet. The Idris 2 typestate machine (`idris/`) compiles but is not yet called
+from Elixir. Integration is the primary remaining work.
+
+== Dogfooded Across The Account
+
+[cols="2,3,1"]
+|===
+| Repo / System | How polysafe-gitfixer is used | Status
+
+| `hypatia` (CI) | The `DirCapability` pattern is the reference implementation for safe path handling in Hypatia rule plugins | Reference
+| `robot-repo-automaton` | Planned: use polysafe-gitfixer to safely merge backup branches during automated repo fixes | Planned
+| Developer workflow | Intended for managing the hundreds of `*-backup` branches that accumulate during agentic sessions | Intended
+| `gitbot-fleet` | sustainabot and echidnabot may call polysafe-gitfixer NIFs for safe backup pruning | Design stage
+|===
 
 == File Map
 
-[cols="1,2"]
+[cols="1,3"]
 |===
 | Path | What's There
 
-| `test(s)/` | Test suite
+| `crates/capability/src/lib.rs` | **Critical path.** Exposes `DirCapability`, `AuditLog`, `Permissions`, `CapabilityError`
+| `crates/capability/src/dir_capability.rs` | `DirCapability` implementation: canonicalisation, path-traversal prevention, attenuation
+| `crates/capability/src/audit_log.rs` | Hash-chained `AuditLog` ledger; `LogEntry`, `Operation`, `IntegrityError`
+| `crates/fs_ops/src/` | Transactional filesystem operations (atomic moves, rollback on failure)
+| `crates/git_ops/src/` | Git repository operations via `git2-rs`
+| `crates/polysafe_nifs/src/` | Rustler NIFs exposing Rust crates to Elixir/OTP
+| `crates/polysafe_e2e/src/` | End-to-end integration test suite
+| `haskell/diff-engine/` | Streaming tree/file diff engine (Haskell, totality-checked)
+| `haskell/tui/` | Terminal UI (Haskell, Brick framework, Elm Architecture)
+| `idris/` | Idris 2 workflow typestate machine; enforces correct operation ordering
+| `elixir/` | OTP orchestrator and supervision tree; supervises all worker processes
+| `config/` | Nickel configuration schemas with type contracts
+| `test/` | Cross-language integration tests
+| `PROOF-NEEDS.md` | Formal verification backlog for this repo
+| `Justfile` | Build recipes: `just build`, `just rust`, `just haskell`, `just elixir`, `just test`
+| `flake.nix` / `guix.scm` | Reproducible environment (includes GHC, Idris2, Elixir, Rust)
+| `contractiles/` | Contractile trust/dust/intend check files
+| `.machine_readable/6a2/` | A2ML state, meta, ecosystem, agentic, neurosym, playbook manifests
 |===
 
 == Questions?
