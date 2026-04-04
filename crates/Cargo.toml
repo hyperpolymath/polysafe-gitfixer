@@ -25,7 +25,7 @@ tracing = "0.1"
 ring = "0.17"
 
 # Git operations
-git2 = "0.19"
+git2 = "0.20"
 
 # Test utilities
 tempfile = "3"
