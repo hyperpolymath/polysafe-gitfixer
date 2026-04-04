@@ -16,7 +16,7 @@
 
 #![forbid(unsafe_code)]
 mod dir_capability;
-mod audit_log;
+pub mod audit_log;
 
 pub use dir_capability::{DirCapability, Permissions, CapabilityError};
-pub use audit_log::{AuditLog, LogEntry, IntegrityError};
+pub use audit_log::{AuditLog, LogEntry, IntegrityError, Operation};

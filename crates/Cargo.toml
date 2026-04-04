@@ -5,6 +5,7 @@ members = [
     "fs_ops",
     "git_ops",
     "polysafe_nifs",
+    "polysafe_e2e",
 ]
 
 [workspace.package]
@@ -25,6 +26,9 @@ ring = "0.17"
 
 # Git operations
 git2 = "0.19"
+
+# Test utilities
+tempfile = "3"
 
 # For NIF bindings
 rustler = "0.36"

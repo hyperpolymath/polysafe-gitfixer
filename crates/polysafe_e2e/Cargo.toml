@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# End-to-end tests and benchmarks for polysafe-gitfixer.
+# Exercises multiple crates together in realistic combined workflows.
+
+[package]
+name = "polysafe_e2e"
+description = "E2E tests and benchmarks for polysafe-gitfixer workspace"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+capability = { path = "../capability" }
+fs_ops     = { path = "../fs_ops" }
+git_ops    = { path = "../git_ops" }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+tempfile  = "3"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "polysafe_bench"
+harness = false
