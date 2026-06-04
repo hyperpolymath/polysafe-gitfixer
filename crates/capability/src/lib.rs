@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: MIT AND Palimpsest-0.8
-
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 //! Capability-Based Security — Polysafe Primitives.
 //!
 //! This crate implements the core security model for the gitfixer ecosystem. 
