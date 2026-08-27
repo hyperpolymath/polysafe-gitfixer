@@ -46,7 +46,7 @@
     (must "no new TypeScript files")
     (must "no new Python files")
     (must "no new Go files")
-    (must "no npm/bun/yarn/pnpm dependencies — Deno only")
+    (must "JS deps via Bun — package.json + bun.lock; no npm/yarn/pnpm lockfiles")
 
     ; Dangerous patterns
     (must "no believe_me (Idris2)")
