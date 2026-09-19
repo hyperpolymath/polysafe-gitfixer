@@ -46,7 +46,7 @@ proof-level.
 
 [quote, README]
 ____
-We welcome contributions! See link:CONTRIBUTING.adoc[CONTRIBUTING] for:
+We welcome contributions! See link:.github/CONTRIBUTING.md[CONTRIBUTING] for:
 the Tri-Perimeter Contribution Framework (TPCF), development setup instructions,
 code style guidelines, and how to submit merge requests.
 ____
