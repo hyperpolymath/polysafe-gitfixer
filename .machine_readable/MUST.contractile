@@ -46,7 +46,7 @@
     (must "no new TypeScript files")
     (must "no new Python files")
     (must "no new Go files")
-    (must "JS deps via Bun — package.json + bun.lock; no npm/yarn/pnpm lockfiles")
+    (must "JS deps via Bun first, with pnpm as fallback — package.json + bun.lock; no npm/yarn lockfiles")
 
     ; Dangerous patterns
     (must "no believe_me (Idris2)")
